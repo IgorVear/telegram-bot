@@ -3,7 +3,8 @@ import asyncio
 from telegram import Update, ReplyKeyboardMarkup
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, MessageHandler, filters
 
-TOKEN = '8148463602:AAF6rbrpoM3YL83FiCi9JA_eZ6DGylavHSk'  
+import os
+TOKEN = os.getenv("BOT_TOKEN")  
 
 main_menu = ReplyKeyboardMarkup(
     [['📞 Связь с администратором', 'ℹ️ Информация о канале'], ['🛍 Посмотреть продукцию']],
@@ -47,3 +48,4 @@ app = ApplicationBuilder().token(TOKEN).build()
 app.add_handler(CommandHandler("start", start))
 app.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), handle_menu))
 app.run_polling()
+
